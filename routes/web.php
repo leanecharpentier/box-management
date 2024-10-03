@@ -18,6 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     Route::get('/box', [BoxController::class, 'index'])->name('box.index');
+    Route::get('/box/{id}', [BoxController::class, 'show'])->name('box.show');
 });
 
 require __DIR__.'/auth.php';

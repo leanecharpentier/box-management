@@ -13,4 +13,11 @@ class BoxController extends Controller
             "box" => Box::all()
         ]);
     }
+
+    public function show($id)
+    {
+        return view('box.show', [
+            "box" => Box::findOrFail($id)
+        ]);
+    }
 }
