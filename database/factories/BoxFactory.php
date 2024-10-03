@@ -18,7 +18,7 @@ class BoxFactory extends Factory
     {
         $faker = \Faker\Factory::create('fr_FR');
         return [
-            'name' => $faker->name(),
+            'name' => "Box " . $faker->name(),
             'address' => $faker->streetAddress(),
             'code' => $faker->postcode(),
             'city' => $faker->city(),
