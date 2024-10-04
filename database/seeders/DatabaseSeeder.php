@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Box;
+use App\Models\Tenant;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -28,6 +29,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(10)->create();
-        Box::factory(10)->create();
+        Box::factory(10)->create()->each(function ($box) {
+            $tenant = Tenant::factory()->state([
+                'box_id' => $box->id
+            ])->create();
+            $box->update([
+                'tenant_id' => $tenant->id
+            ]);
+        });
     }
 }
