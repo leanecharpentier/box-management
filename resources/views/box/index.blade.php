@@ -17,6 +17,7 @@
                                 <th>Nom</th>
                                 <th>Adresse</th>
                                 <th>Loyer (€/mois)</th>
+                                <th>Disponible</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -27,6 +28,13 @@
                                     <td>{{ $box1->name }}</td>
                                     <td>{{ $box1->address . " " . $box1->code . " " .  $box1->city }}</td>
                                     <td>{{ $box1->rent }}</td>
+                                    <td>
+                                        @if ($box1->tenant_id == null)
+                                            Oui
+                                        @else
+                                            Non
+                                        @endif
+                                    </td>
                                     <td>
                                         <ul>
                                             <li>

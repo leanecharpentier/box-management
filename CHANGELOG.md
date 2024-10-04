@@ -1,3 +1,8 @@
+### [0.5.0] - 2024/10/04
+
+-   Show informations about tenant
+-   Show if a box is available or not
+
 ### [0.4.0] - 2024/10/04
 
 -   Delete a box

@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/box/{id}/edit', [BoxController::class, 'edit'])->name('box.edit');
     Route::put('/box/{id}', [BoxController::class, 'update'])->name('box.update');
     Route::delete('/box/{id}', [BoxController::class, 'destroy'])->name('box.destroy');
+    
+    Route::get('/tenants/{id}', [TenantsController::class, 'show'])->name('tenants.show');
 });
 
 require __DIR__.'/auth.php';
