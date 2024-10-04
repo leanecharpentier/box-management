@@ -32,6 +32,9 @@
                                             <li>
                                                 <a href="{{ route('box.show', $box1->id) }}">Voir</a>
                                             </li>
+                                            <li>
+                                                <a href="{{ route('box.edit', $box1->id) }}">Modifier</a>
+                                            </li>
                                         </ul>
                                     </td>
                                 </tr>
