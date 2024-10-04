@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Box;
+use App\Models\Tenant;
 use Illuminate\Http\Request;
 
 class BoxController extends Controller
@@ -16,8 +17,11 @@ class BoxController extends Controller
 
     public function show($id)
     {
+        $box = Box::findOrFail($id);
+        $tenant = Tenant::findOrFail($box->tenant_id);
         return view('box.show', [
-            "box" => Box::findOrFail($id)
+            "box" => $box,
+            "tenant" => $tenant
         ]);
     }
 
