@@ -35,6 +35,13 @@
                                             <li>
                                                 <a href="{{ route('box.edit', $box1->id) }}">Modifier</a>
                                             </li>
+                                            <li>
+                                                 <form action="{{ route('box.destroy', $box1->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit">Supprimer</button>
+                                                </form>
+                                            </li>
                                         </ul>
                                     </td>
                                 </tr>
