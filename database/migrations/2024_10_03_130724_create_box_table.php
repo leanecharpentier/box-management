@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string("city");
             $table->string("country");
             $table->integer("rent");
+            $table->unsignedBigInteger('tenant_id')->nullable();
+            $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('cascade');
             $table->timestamps();
         });
     }
