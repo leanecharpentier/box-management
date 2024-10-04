@@ -39,4 +39,25 @@ class BoxController extends Controller
 
         return redirect()->route('box.index');
     }
+
+    public function edit($id)
+    {
+        return view("box.edit", [
+            "box" => Box::findOrFail($id)
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $box = Box::findOrFail($id);
+        $box->name = $request->get('name');
+        $box->address = $request->get('address');
+        $box->code = $request->get('code');
+        $box->city = $request->get('city');
+        $box->country = $request->get('country');
+        $box->rent = $request->get('rent');
+        $box->save();
+
+        return redirect()->route('box.index');
+    }
 }
