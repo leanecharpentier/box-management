@@ -60,4 +60,10 @@ class BoxController extends Controller
 
         return redirect()->route('box.index');
     }
+
+    public function destroy($id)
+    {
+        Box::destroy($id);
+        return redirect()->route("box.index");
+    }
 }
