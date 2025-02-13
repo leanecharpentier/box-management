@@ -16,8 +16,9 @@ class BoxController extends Controller
 
     public function show($id)
     {
+        $box = Box::with('tenant')->find($id);
         return view('box.show', [
-            "box" => Box::findOrFail($id)
+            "box" => $box,
         ]);
     }
 

@@ -13,7 +13,10 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Tableau de bord') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('box.index')" :active="request()->routeIs('box.index')">
+                        {{ __('Mes box') }}
                     </x-nav-link>
                 </div>
             </div>

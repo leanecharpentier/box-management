@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Tableau de bord') }}
         </h2>
     </x-slot>
 
@@ -9,7 +9,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
+                    <ul>
+                        <li>Gestion des box</li>
+                        <li>Gestion des locataires</li>
+                        <li>Gestion des contrats</li>
+                        <li>Suivi des paiements</li>
+                        <li>Gestion des impots</li>
+                        <li>Gestion des factures</li>
+                    </ul>
                 </div>
             </div>
         </div>

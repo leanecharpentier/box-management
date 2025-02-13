@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Box;
+use App\Models\Tenant;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +15,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
+        User::factory()->create([
+            'name' => 'Toto',
+            'email' => 'toto@toto.com',
+            'password' => "toto"
+        ]);
         User::factory()->create([
             'name' => 'Pierre',
             'email' => 'pierre@example.com',
@@ -28,6 +34,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(10)->create();
-        Box::factory(10)->create();
+        Box::factory(5)->create();
+        Box::factory(5)->create()->each(function ($box) {
+            $tenant = Tenant::factory()->state([
+                'box_id' => $box->id
+            ])->create();
+            $box->update([
+                'tenant_id' => $tenant->id
+            ]);
+        });
     }
 }
