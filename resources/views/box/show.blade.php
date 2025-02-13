@@ -31,7 +31,7 @@
                     </ul>
                     @else
                     <p>Pas de locataire</p>
-                    <a href="">Ajouter un locataire</a>
+                    <a href="{{ route('tenants.create', ['box_id' => $box->id]) }}">Ajouter un locataire</a>
                     @endif
                 </div>
             </div>

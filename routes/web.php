@@ -26,8 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/box/{id}', [BoxController::class, 'update'])->name('box.update');
     Route::delete('/box/{id}', [BoxController::class, 'destroy'])->name('box.destroy');
     
-    Route::get('/tenants/create', [TenantsController::class, 'create'])->name('tenants.create');
-    Route::post('/tenants', [TenantsController::class, 'store'])->name('tenants.store');
+    Route::get('/box/{box_id}/tenants/create', [TenantsController::class, 'create'])->name('tenants.create');
+    Route::post('/box/{box_id}/tenants', [TenantsController::class, 'store'])->name('tenants.store');
 });
 
 require __DIR__.'/auth.php';
