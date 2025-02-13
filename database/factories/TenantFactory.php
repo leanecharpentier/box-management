@@ -25,6 +25,7 @@ class TenantFactory extends Factory
             'firstname' => $faker->firstName(),
             'phone' => '06 ' . $number,
             'email' => $faker->email(),
+            'start_date' => now()
         ];
     }
 }

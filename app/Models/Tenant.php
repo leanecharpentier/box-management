@@ -18,4 +18,9 @@ class Tenant extends Model
         "email",
         "box_id",
     ];
+
+    public function box()
+    {
+        return $this->belongsTo(Box::class);
+    }
 }

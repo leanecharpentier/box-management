@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BoxController;
+use App\Http\Controllers\TenantsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/box/{id}', [BoxController::class, 'update'])->name('box.update');
     Route::delete('/box/{id}', [BoxController::class, 'destroy'])->name('box.destroy');
     
-    Route::get('/tenants/{id}', [TenantsController::class, 'show'])->name('tenants.show');
+    Route::get('/tenants/create', [TenantsController::class, 'create'])->name('tenants.create');
+    Route::post('/tenants', [TenantsController::class, 'store'])->name('tenants.store');
 });
 
 require __DIR__.'/auth.php';

@@ -17,12 +17,22 @@
                     </ul>
                 </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    @if ($box->tenant)
                     <h2>Info sur le locataire</h2>
                     <ul>
-                        <li>Nom : {{ $tenant->lastname . ' ' . $tenant->firstname }}</li>
-                        <li>Numéro de téléphone : {{ $tenant->phone}}</li>
-                        <li>Adesse mail : {{ $tenant->email}}</li>
+                        <li>Nom : {{ $box->tenant->lastname . ' ' . $box->tenant->firstname }}</li>
+                        <li>Numéro de téléphone : {{ $box->tenant->phone }}</li>
+                        <li>Adesse mail : {{ $box->tenant->email }}</li>
+                        <li>Depuis le : {{ $box->tenant->start_date }}</li>
                     </ul>
+                    <ul>
+                        <li>Modifier le locataire</li>
+                        <li>Supprimer le locataire</li>
+                    </ul>
+                    @else
+                    <p>Pas de locataire</p>
+                    <a href="">Ajouter un locataire</a>
+                    @endif
                 </div>
             </div>
         </div>

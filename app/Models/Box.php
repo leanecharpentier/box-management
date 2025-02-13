@@ -20,4 +20,9 @@ class Box extends Model
         "rent",
         "tenant_id"
     ];
+
+    public function tenant()
+    {
+        return $this->hasOne(Tenant::class);
+    }
 }

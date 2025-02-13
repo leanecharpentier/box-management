@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string("firstname");
             $table->string("phone");
             $table->string("email");
-            $table->unsignedBigInteger('box_id');
-            $table->foreign('box_id')->references('id')->on('box')->onDelete('cascade');
+            $table->foreignId('box_id')->constrained('box')->onDelete('set null');
+            $table->date("start_date");
+            $table->date("end_date")->nullable();
             $table->timestamps();
         });
     }
