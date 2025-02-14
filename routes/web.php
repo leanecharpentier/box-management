@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\BoxController;
-use App\Http\Controllers\TenantsController;
+use App\Http\Controllers\TenantController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,8 +26,13 @@ Route::middleware('auth')->group(function () {
     Route::put('/box/{id}', [BoxController::class, 'update'])->name('box.update');
     Route::delete('/box/{id}', [BoxController::class, 'destroy'])->name('box.destroy');
     
-    Route::get('/box/{box_id}/tenants/create', [TenantsController::class, 'create'])->name('tenants.create');
-    Route::post('/box/{box_id}/tenants', [TenantsController::class, 'store'])->name('tenants.store');
+    Route::get('/tenant', [TenantController::class, 'index'])->name('tenant.index');
+    Route::get('/tenant/create', [TenantController::class, 'create'])->name('tenant.create');
+    Route::get('/tenant/{id}', [TenantController::class, 'show'])->name('tenant.show');
+    Route::post('/tenant', [TenantController::class, 'store'])->name('tenant.store');
+    Route::get('/tenant/{id}/edit', [TenantController::class, 'edit'])->name('tenant.edit');
+    Route::put('/tenant/{id}', [TenantController::class, 'update'])->name('tenant.update');
+    Route::delete('/tenant/{id}', [TenantController::class, 'destroy'])->name('tenant.destroy');
 });
 
 require __DIR__.'/auth.php';

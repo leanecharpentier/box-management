@@ -9,34 +9,36 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <a href="{{ route('box.create') }}">Ajouter</a>
+                    <a href="{{ route('tenant.create') }}">Ajouter</a>
                     <table class="border">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nom</th>
-                                <th>Adresse</th>
-                                <th>Loyer (€/mois)</th>
+                                <th>Nom de famille</th>
+                                <th>Prénom</th>
+                                <th>Adresse mail</th>
+                                <th>Numéro de téléphone</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($boxes as $box)
+                            @foreach($tenants as $tenant)
                                 <tr>
-                                    <td>{{ $box->id }}</td>
-                                    <td>{{ $box->name }}</td>
-                                    <td>{{ $box->address . " " . $box->code . " " .  $box->city }}</td>
-                                    <td>{{ $box->rent }}</td>
+                                    <td>{{ $tenant->id }}</td>
+                                    <td>{{ $tenant->lastname }}</td>
+                                    <td>{{ $tenant->firstname }}</td>
+                                    <td>{{ $tenant->email }}</td>
+                                    <td>{{ $tenant->phone }}</td>
                                     <td>
                                         <ul>
                                             <li>
-                                                <a href="{{ route('box.show', $box->id) }}">Voir</a>
+                                                <a href="{{ route('tenant.show', $tenant->id) }}">Voir</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('box.edit', $box->id) }}">Modifier</a>
+                                                <a href="{{ route('tenant.edit', $tenant->id) }}">Modifier</a>
                                             </li>
                                             <li>
-                                                 <form action="{{ route('box.destroy', $box->id) }}" method="POST">
+                                                 <form action="{{ route('tenant.destroy', $tenant->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit">Supprimer</button>
