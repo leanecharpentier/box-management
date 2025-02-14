@@ -17,31 +17,28 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Toto',
-            'email' => 'toto@toto.com',
+            'email' => 'toto@toto.fr',
             'password' => "toto"
-        ]);
-        User::factory()->create([
-            'name' => 'Pierre',
-            'email' => 'pierre@example.com',
-        ]);
-        User::factory()->create([
-            'name' => 'Paul',
-            'email' => 'paul@example.com',
-        ]);
-        User::factory()->create([
-            'name' => 'Jacques',
-            'email' => 'jacques@example.com',
-        ]);
-
-        User::factory(10)->create();
-        Box::factory(5)->create();
-        Box::factory(5)->create()->each(function ($box) {
-            $tenant = Tenant::factory()->state([
-                'box_id' => $box->id
+        ])->each(function ($user) {
+            Box::factory(10)->state([
+                'owner_id' => $user->id
             ])->create();
-            $box->update([
-                'tenant_id' => $tenant->id
-            ]);
+            Tenant::factory(5)->state([
+                'owner_id' => $user->id
+            ])->create();
+        });
+
+        User::factory()->create([
+            'name' => 'Léane',
+            'email' => 'leane@example.fr',
+            'password' => "leane"
+        ])->each(function ($user) {
+            Box::factory(10)->state([
+                'owner_id' => $user->id
+            ])->create();
+            Tenant::factory(5)->state([
+                'owner_id' => $user->id
+            ])->create();
         });
     }
 }

@@ -9,7 +9,7 @@ class Box extends Model
 {
     use HasFactory;
     
-    protected $table = "box";
+    protected $table = "boxes";
 
     protected $fillable = [
         "name",
@@ -17,8 +17,8 @@ class Box extends Model
         "code",
         "city",
         "country",
-        "rent",
-        "tenant_id"
+        "price",
+        "owner_id"
     ];
 
     public function tenant()

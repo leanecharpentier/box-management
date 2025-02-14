@@ -34,8 +34,8 @@
                             <input type="text" id="country" name="country" value="{{ $box->country }}">
                         </div>
                         <div>
-                            <label for="rent">Loyer (€/mois) : </label>
-                            <input type="number" id="rent" name="rent" value="{{ $box->rent }}">
+                            <label for="price">Loyer (€/mois) : </label>
+                            <input type="number" id="price" name="price" value="{{ $box->price }}">
                         </div>
                         <div>
                             <button type="submit">Modifier</button>

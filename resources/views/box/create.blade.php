@@ -33,8 +33,8 @@
                             <input type="text" id="country" name="country">
                         </div>
                         <div>
-                            <label for="rent">Loyer (€/mois) : </label>
-                            <input type="number" id="rent" name="rent">
+                            <label for="price">Loyer (€/mois) : </label>
+                            <input type="number" id="price" name="price">
                         </div>
                         <div>
                             <button type="submit">Envoyer</button>

@@ -16,9 +16,7 @@ class Tenant extends Model
         "firstname",
         "phone",
         "email",
-        "box_id",
-        "start_date",
-        "end_date"
+        "owner_id",
     ];
 
     public function box()

@@ -17,9 +17,7 @@ return new class extends Migration
             $table->string("firstname");
             $table->string("phone");
             $table->string("email");
-            $table->foreignId('box_id')->constrained('box')->onDelete('set null');
-            $table->date("start_date");
-            $table->date("end_date")->nullable();
+            $table->foreignId('owner_id')->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }
