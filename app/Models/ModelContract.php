@@ -5,23 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Box extends Model
+class ModelContract extends Model
 {
     use HasFactory;
     
-    protected $table = "boxes";
+    protected $table = "models_contracts";
 
     protected $fillable = [
         "name",
-        "address",
-        "code",
-        "city",
-        "country",
-        "price",
-        "owner_id"
+        "content",
+        "user_id"
     ];
 
-    public function owner()
+    public function user()
     {
         return $this->hasOne(User::class);
     }
