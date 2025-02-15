@@ -23,6 +23,10 @@ class Box extends Model
 
     public function owner()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
+    }
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
     }
 }
