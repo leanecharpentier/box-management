@@ -16,10 +16,16 @@
                         {{ __('Tableau de bord') }}
                     </x-nav-link>
                     <x-nav-link :href="route('box.index')" :active="request()->routeIs('box.index')">
-                        {{ __('Mes box') }}
+                        {{ __('Box') }}
                     </x-nav-link>
                     <x-nav-link :href="route('tenant.index')" :active="request()->routeIs('tenant.index')">
-                        {{ __('Mes locataires') }}
+                        {{ __('Locataires') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('model_contract.index')" :active="request()->routeIs('model_contract.index')">
+                        {{ __('Modèles de contrat') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('contract.index')" :active="request()->routeIs('contract.index')">
+                        {{ __('Contrats') }}
                     </x-nav-link>
                 </div>
             </div>

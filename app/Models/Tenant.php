@@ -19,8 +19,13 @@ class Tenant extends Model
         "owner_id",
     ];
 
-    public function box()
+    public function owner()
     {
-        return $this->belongsTo(Box::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
     }
 }

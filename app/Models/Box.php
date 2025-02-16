@@ -21,8 +21,12 @@ class Box extends Model
         "owner_id"
     ];
 
-    public function tenant()
+    public function owner()
     {
-        return $this->hasOne(Tenant::class);
+        return $this->belongsTo(User::class);
+    }
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
     }
 }
