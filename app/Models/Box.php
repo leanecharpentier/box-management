@@ -9,7 +9,7 @@ class Box extends Model
 {
     use HasFactory;
     
-    protected $table = "box";
+    protected $table = "boxes";
 
     protected $fillable = [
         "name",
@@ -17,6 +17,16 @@ class Box extends Model
         "code",
         "city",
         "country",
-        "rent",
+        "price",
+        "owner_id"
     ];
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
+    }
 }

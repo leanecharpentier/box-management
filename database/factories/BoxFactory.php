@@ -23,7 +23,7 @@ class BoxFactory extends Factory
             'code' => $faker->postcode(),
             'city' => $faker->city(),
             'country' => "France",
-            'rent' => $faker->numberBetween(100, 800)
+            'price' => $faker->numberBetween(100, 800)
         ];
     }
 }

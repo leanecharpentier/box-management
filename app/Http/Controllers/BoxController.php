@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Box;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Box;
 
 class BoxController extends Controller
 {
     public function index()
     {
         return view('box.index', [
-            "box" => Box::all()
+            "boxes" => Box::where("owner_id", Auth::user()->id)->get()
         ]);
     }
 
@@ -34,7 +35,8 @@ class BoxController extends Controller
         $box->code = $request->get('code');
         $box->city = $request->get('city');
         $box->country = $request->get('country');
-        $box->rent = $request->get('rent');
+        $box->price = $request->get('price');
+        $box->owner_id = Auth::user()->id;
         $box->save();
 
         return redirect()->route('box.index');
@@ -55,7 +57,7 @@ class BoxController extends Controller
         $box->code = $request->get('code');
         $box->city = $request->get('city');
         $box->country = $request->get('country');
-        $box->rent = $request->get('rent');
+        $box->price = $request->get('price');
         $box->save();
 
         return redirect()->route('box.index');
