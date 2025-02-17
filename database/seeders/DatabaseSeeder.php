@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ModelContract;
 use App\Models\User;
 use App\Models\Box;
 use App\Models\Tenant;
@@ -26,10 +27,13 @@ class DatabaseSeeder extends Seeder
             Tenant::factory(5)->state([
                 'owner_id' => $user->id
             ])->create();
+            ModelContract::factory()->state([
+                'user_id' => $user->id
+            ])->create();
         });
 
         User::factory()->create([
-            'name' => 'Léane',
+            'name' => 'Léane Charpentier',
             'email' => 'leane@example.fr',
             'password' => "leane"
         ])->each(function ($user) {
@@ -38,6 +42,9 @@ class DatabaseSeeder extends Seeder
             ])->create();
             Tenant::factory(5)->state([
                 'owner_id' => $user->id
+            ])->create();
+            ModelContract::factory()->state([
+                'user_id' => $user->id
             ])->create();
         });
     }
