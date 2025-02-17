@@ -29,5 +29,4 @@ class BillController extends Controller
         $bill->save();
         return redirect()->route('bill.index');
     }
-
 }

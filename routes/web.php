@@ -4,6 +4,7 @@ use App\Http\Controllers\BillController;
 use App\Http\Controllers\BoxController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\ModelContractController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,10 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/bill', [BillController::class, 'index'])->name('bill.index');
     Route::post('/bill', [BillController::class, 'store'])->name('bill.store');
+
+    Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
+    Route::put('/payment/{bill_id}', [PaymentController::class, 'update'])->name('payment.update');
+
 });
 
 require __DIR__.'/auth.php';
