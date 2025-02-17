@@ -24,7 +24,9 @@
                                 <tr class="hover:bg-gray-50">
                                     <td class="px-6 py-4 text-center border-r border-gray-300">{{ $bill->contract->box->name }}</td>
                                     <td class="px-6 py-4 text-center border-r border-gray-300">{{ $bill->contract->tenant->lastname . " " . $bill->contract->tenant->firstname }}</td>
-                                    <td class="px-6 py-4 text-center border-r border-gray-300">{{ $bill->period_number }}</td>
+                                    <td class="px-6 py-4 text-center border-r border-gray-300">
+                                        {{ \Carbon\Carbon::parse($bill->contract->start_date)->addMonths((int) $bill->period_number - 1)->format('Y-m-d') }}
+                                    </td>
                                     <td class="px-6 py-4 text-center border-r border-gray-300">
                                         @if ($bill->payment_date)
                                             {{ $bill->payment_date }}

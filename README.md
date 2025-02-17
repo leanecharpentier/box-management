@@ -2,7 +2,7 @@
 
 Box management is a storage box rental management application intended for owners.
 
-## Login
+## Login credentials to test the application
 
 1. Toto
    - email : toto@toto.fr
