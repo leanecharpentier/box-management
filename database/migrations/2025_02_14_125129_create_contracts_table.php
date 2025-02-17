@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('box_id')->constrained('boxes')->onDelete('set null');
             $table->foreignId('tenant_id')->constrained('tenants')->onDelete('set null');
             $table->foreignId('user_id')->constrained('users')->onDelete('set null');
+            $table->foreignId('model_contract_id')->constrained('models_contracts')->onDelete('set null');
             $table->timestamps();
         });
     }

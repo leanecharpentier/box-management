@@ -17,6 +17,7 @@ class Contract extends Model
         "monthly_price",
         "box_id",
         "tenant_id",
+        "model_contract_id",
         "user_id"
     ];
 
@@ -27,6 +28,10 @@ class Contract extends Model
     public function tenant()
     {
         return $this->belongsTo(Tenant::class);
+    }
+    public function model_contract()
+    {
+        return $this->belongsTo(ModelContract::class);
     }
     public function user()
     {
