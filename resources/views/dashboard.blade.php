@@ -12,9 +12,9 @@
                     ['name' => 'Gestion des box', 'link' => route('box.index')],
                     ['name' => 'Gestion des locataires', 'link' => route('tenant.index')],
                     ['name' => 'Gestion des contrats', 'link' => route('contract.index')],
-                    ['name' => 'Suivi des paiements', 'link' => "#"],
+                    ['name' => 'Génération des factures', 'link' => route('bill.index')],
+                    ['name' => 'Suivi des paiements', 'link' => route('payment.index')],
                     ['name' => 'Gestion des impôts', 'link' => "#"],
-                    ['name' => 'Gestion des factures', 'link' => "#"],
                 ] as $item)
                     <a href="{{ $item['link'] }}" class="block bg-white shadow-lg rounded-lg p-6 text-center 
                         text-gray-900 transition duration-300

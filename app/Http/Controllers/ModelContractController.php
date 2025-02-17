@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\ModelContract;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\Box;
 
 class ModelContractController extends Controller
 {

@@ -2,9 +2,16 @@
 
 Box management is a storage box rental management application intended for owners.
 
-## Graphic charter
+## Login credentials to test the application
 
-### Colors
+1. Toto
+   - email : toto@toto.fr
+   - password : toto
 
--   Orange : #E39667
--   Navy blue : #072639
+2. Léane Charpentier
+   - email : leane@example.fr
+   - password : leane
+
+## URI Prod
+
+http://leane.charpentier.angers.mds-project.fr/
