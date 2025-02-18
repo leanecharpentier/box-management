@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Modifier le contrat : {{ $model_contract->name }}
+            {{ __('Modification du modèle de contrat') }}
         </h2>
     </x-slot>
 

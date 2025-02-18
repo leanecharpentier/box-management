@@ -34,7 +34,7 @@
                         {{ __('Paiements') }}
                     </x-nav-link>
                     <x-nav-link :href="route('tax.index')" :active="request()->routeIs('tax.index')">
-                        {{ __('Impots') }}
+                        {{ __('Impôts') }}
                     </x-nav-link>
                 </div>
             </div>

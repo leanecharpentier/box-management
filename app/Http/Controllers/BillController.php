@@ -12,7 +12,8 @@ class BillController extends Controller
 {
     public function index()
     {
-        $contracts = Contract::where("user_id", Auth::user()->id)
+        $contracts = Contract::with("bills")
+            ->where("user_id", Auth::user()->id)
             ->whereDate('start_date', '<=', Carbon::today())
             ->whereDate('end_date', '>=', Carbon::today())
             ->get();
@@ -27,6 +28,23 @@ class BillController extends Controller
         $bill->period_number = ceil(Carbon::parse($contract->start_date)->floatDiffInMonths(Carbon::now()));
         $bill->contract_id = $contract->id;
         $bill->save();
+        return redirect()->route('bill.index');
+    }
+
+    public function store_many(Request $request)
+    {
+         $contracts = json_decode($request->contracts);
+        foreach ($contracts as $contract) {
+            $currentPeriod = ceil(Carbon::parse($contract->start_date)->floatDiffInMonths(Carbon::now()));
+            $contract = Contract::with('bills')->find($contract->id);
+            $billExists = $contract->bills->contains('period_number', $currentPeriod);
+            if (!$billExists) {
+                $bill = new Bill();
+                $bill->period_number = $currentPeriod;
+                $bill->contract_id = $contract->id;
+                $bill->save();
+            }
+        }
         return redirect()->route('bill.index');
     }
 }
