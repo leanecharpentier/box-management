@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/payment/{bill_id}', [PaymentController::class, 'update'])->name('payment.update');
     
     Route::get('/tax', [TaxController::class, 'index'])->name('tax.index');
+    Route::post('/tax/export-pdf', [TaxController::class, 'export_pdf'])->name('tax.pdf');
 
 });
 
