@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow-lg rounded-lg p-6">
                 @if (count($bills) > 0)
                     <h2 class="text-2xl font-semibold text-gray-900 mb-4">Listes des factures</h2>
