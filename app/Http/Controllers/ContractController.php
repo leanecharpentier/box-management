@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Box;
 use App\Models\Tenant;
 use App\Models\Contract;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ContractController extends Controller
 {
@@ -102,6 +103,14 @@ class ContractController extends Controller
     {
         Contract::destroy($id);
         return redirect()->route("contract.index");
+    }
+
+    public function export_pdf(Request $request)
+    {
+        $editorContent = $request->input('content');
+        $html = view('contract.pdf', compact('editorContent'))->render();
+        $pdf = Pdf::loadHTML($html);
+        return $pdf->download('contrat.pdf');
     }
 }
 

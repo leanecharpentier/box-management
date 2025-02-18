@@ -40,14 +40,15 @@
                     <a href="{{ route('contract.edit', $contract->id) }}" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">
                         Modifier
                     </a>
-                    <a href="" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">
+                    <a href="" id="generateContract" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">
                         Générer le contrat
                     </a>
                 </div>
             </div>
 
-            <div class="bg-white shadow-lg rounded-lg p-6">
+            <div id="contractShow" class="bg-white shadow-lg rounded-lg p-6 mt-6 hidden">
                 <div id="editorjs"></div>
+                <button class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300" id="exportPdf">Exporter en PDF</button>
 
                 <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
                 <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
@@ -55,20 +56,51 @@
 
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
-                        const editor = new EditorJS({
-                            holder: 'editorjs',
-                            data: {!! json_encode($content, JSON_UNESCAPED_UNICODE) !!}, 
-                            readOnly: true,
-                            tools: {
-                                header: {
-                                    class: Header,
-                                    inlineToolbar: true
-                                },
-                                paragraph: {
-                                    class: Paragraph,
-                                    inlineToolbar: true
-                                }
+                        const generateBtn = document.getElementById('generateContract');
+                        const contractEditor = document.getElementById('contractShow');
+
+                        generateBtn.addEventListener('click', function(event) {
+                            event.preventDefault(); // Empêche le lien de recharger la page
+                            contractEditor.classList.toggle('hidden'); // Affiche/Cache la div
+                            
+                            if (!contractEditor.classList.contains('hidden')) {
+                                new EditorJS({
+                                    holder: 'editorjs',
+                                    data: {!! json_encode($content, JSON_UNESCAPED_UNICODE) !!},
+                                    readOnly: true,
+                                    tools: {
+                                        header: {
+                                            class: Header,
+                                            inlineToolbar: true
+                                        },
+                                        paragraph: {
+                                            class: Paragraph,
+                                            inlineToolbar: true
+                                        }
+                                    }
+                                });
                             }
+                        });
+                    });
+
+                    document.getElementById('exportPdf').addEventListener('click', () => {
+                        fetch('/contract/export-pdf', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                            },
+                            body: JSON.stringify({ content: {!! json_encode($content, JSON_UNESCAPED_UNICODE) !!} })
+                        })
+                        .then(response => response.blob())
+                        .then(blob => {
+                            const url = window.URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'contrat.pdf';
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
                         });
                     });
                 </script>

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Gestion des locataires') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
             <a href="{{ route('tenant.create') }}" class="inline-block mb-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">
                 Ajouter un locataire
             </a>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
                 @foreach($tenants as $tenant)
                     <div class="bg-white shadow-lg rounded-lg p-6 hover:bg-blue-100 transition duration-300">
                         <h3 class="font-semibold text-xl text-gray-900">{{ $tenant->lastname }} {{ $tenant->firstname }}</h3>
