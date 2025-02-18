@@ -30,8 +30,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $users = [
-            ['name' => 'Toto', 'email' => 'toto@toto.fr', 'password' => bcrypt('toto')],
-            ['name' => 'Léane Charpentier', 'email' => 'leane@example.fr', 'password' => bcrypt('leane')],
+            ['name' => 'Toto', 'email' => 'toto@toto.fr', 'password' => 'toto'],
+            ['name' => 'Léane Charpentier', 'email' => 'leane@example.fr', 'password' => 'leane'],
         ];
         $contracts = [
             ["box_id" => 1, "tenant_id" => 1, "user_id" => 1],

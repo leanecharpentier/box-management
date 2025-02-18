@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tenant/{id}/edit', [TenantController::class, 'edit'])->name('tenant.edit');
     Route::put('/tenant/{id}', [TenantController::class, 'update'])->name('tenant.update');
     Route::delete('/tenant/{id}', [TenantController::class, 'destroy'])->name('tenant.destroy');
+    Route::post('/tenant/export', [TenantController::class, 'export_csv'])->name('tenant.export_csv');
     
     Route::get('/model_contract', [ModelContractController::class, 'index'])->name('model_contract.index');
     Route::get('/model_contract/create', [ModelContractController::class, 'create'])->name('model_contract.create');
@@ -58,6 +59,7 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/bill', [BillController::class, 'index'])->name('bill.index');
     Route::post('/bill', [BillController::class, 'store'])->name('bill.store');
+    Route::post('/bill/many', [BillController::class, 'store_many'])->name('bill.store_many');
 
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
     Route::put('/payment/{bill_id}', [PaymentController::class, 'update'])->name('payment.update');

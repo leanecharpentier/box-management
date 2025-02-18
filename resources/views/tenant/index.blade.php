@@ -1,15 +1,24 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Gestion des locataires') }}
+            {{ __('Liste des locataires') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('tenant.create') }}" class="inline-block mb-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">
-                Ajouter un locataire
-            </a>
+            <div class="flex flex-row items-center justify-between mb-6">
+                <a href="{{ route('tenant.create') }}" class="inline-block mb-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">
+                    Ajouter un locataire
+                </a>
+                <form action="{{ route('tenant.export_csv') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="tenants" value="{{ json_encode($tenants) }}">
+                    <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition duration-300">
+                        Exporter au format CSV
+                    </button>
+                </form>
+            </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
                 @foreach($tenants as $tenant)
                     <div class="bg-white shadow-lg rounded-lg p-6 hover:bg-blue-100 transition duration-300">
