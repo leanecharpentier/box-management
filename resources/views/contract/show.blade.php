@@ -48,6 +48,7 @@
 
             <div class="bg-white shadow-lg rounded-lg p-6">
                 <div id="editorjs"></div>
+                <button class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300" id="exportPdf">Exporter en PDF</button>
 
                 <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
                 <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
@@ -57,7 +58,7 @@
                     document.addEventListener('DOMContentLoaded', function() {
                         const editor = new EditorJS({
                             holder: 'editorjs',
-                            data: {!! json_encode($content, JSON_UNESCAPED_UNICODE) !!}, 
+                            data: {!! json_encode($content, JSON_UNESCAPED_UNICODE) !!},
                             readOnly: true,
                             tools: {
                                 header: {
@@ -69,6 +70,27 @@
                                     inlineToolbar: true
                                 }
                             }
+                        });
+                    });
+
+                    document.getElementById('exportPdf').addEventListener('click', () => {
+                        fetch('/contract/export-pdf', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                            },
+                            body: JSON.stringify({ content: {!! json_encode($content, JSON_UNESCAPED_UNICODE) !!} })
+                        })
+                        .then(response => response.blob())
+                        .then(blob => {
+                            const url = window.URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'contrat.pdf';
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
                         });
                     });
                 </script>
