@@ -79,6 +79,7 @@ class TenantController extends Controller
         ];
 
         $handle = fopen('php://output', 'w');
+        fprintf($handle, chr(0xEF).chr(0xBB).chr(0xBF));
         fputcsv($handle, ['ID', 'Nom', 'Prénom', 'Email', 'Téléphone']);
         
         foreach ($tenants as $tenant) {
