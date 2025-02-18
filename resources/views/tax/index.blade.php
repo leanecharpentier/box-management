@@ -51,6 +51,30 @@
                         </tr>
                     </tbody>
                 </table>
+                <button class="mt-6 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300" id="exportPdf">Exporter en PDF</button>
+
+                <script>
+                    document.getElementById('exportPdf').addEventListener('click', () => {
+                        fetch('/tax/export-pdf', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                            },
+                            body: JSON.stringify({ sum_bills: {{ $sum_bills }} })
+                        })
+                        .then(response => response.blob())
+                        .then(blob => {
+                            const url = window.URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'impots.pdf';
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                        });
+                    });
+                </script>
             </div>
         </div>
     </div>

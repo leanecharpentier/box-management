@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/contract/{id}/edit', [ContractController::class, 'edit'])->name('contract.edit');
     Route::put('/contract/{id}', [ContractController::class, 'update'])->name('contract.update');
     Route::delete('/contract/{id}', [ContractController::class, 'destroy'])->name('contract.destroy');
+    Route::post('/contract/export-pdf', [ContractController::class, 'export_pdf'])->name('contract.pdf');
     
     Route::get('/bill', [BillController::class, 'index'])->name('bill.index');
     Route::post('/bill', [BillController::class, 'store'])->name('bill.store');
@@ -62,6 +63,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/payment/{bill_id}', [PaymentController::class, 'update'])->name('payment.update');
     
     Route::get('/tax', [TaxController::class, 'index'])->name('tax.index');
+    Route::post('/tax/export-pdf', [TaxController::class, 'export_pdf'])->name('tax.pdf');
+
 });
 
 require __DIR__.'/auth.php';

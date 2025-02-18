@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Bill;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TaxController extends Controller
 {
@@ -23,5 +25,13 @@ class TaxController extends Controller
         return view('tax.index', [
             "sum_bills" => $sum
         ]);
+    }
+
+    public function export_pdf(Request $request)
+    {
+        $sum_bills = $request->input('sum_bills');
+        $html = view('tax.pdf', compact('sum_bills'))->render();
+        $pdf = Pdf::loadHTML($html);
+        return $pdf->download('impots.pdf');
     }
 }
