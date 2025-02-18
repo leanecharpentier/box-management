@@ -58,6 +58,7 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/bill', [BillController::class, 'index'])->name('bill.index');
     Route::post('/bill', [BillController::class, 'store'])->name('bill.store');
+    Route::post('/bill/many', [BillController::class, 'store_many'])->name('bill.store_many');
 
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
     Route::put('/payment/{bill_id}', [PaymentController::class, 'update'])->name('payment.update');
