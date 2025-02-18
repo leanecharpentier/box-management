@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tenant/{id}/edit', [TenantController::class, 'edit'])->name('tenant.edit');
     Route::put('/tenant/{id}', [TenantController::class, 'update'])->name('tenant.update');
     Route::delete('/tenant/{id}', [TenantController::class, 'destroy'])->name('tenant.destroy');
+    Route::post('/tenant/export', [TenantController::class, 'export_csv'])->name('tenant.export_csv');
     
     Route::get('/model_contract', [ModelContractController::class, 'index'])->name('model_contract.index');
     Route::get('/model_contract/create', [ModelContractController::class, 'create'])->name('model_contract.create');

@@ -64,4 +64,40 @@ class TenantController extends Controller
         Tenant::destroy($id);
         return redirect()->route("tenant.index");
     }
+
+    public function export_csv(Request $request)
+    {
+        $tenants = json_decode($request->input('tenants'));
+
+        $fileName = 'locataires_' . now()->format('Y-m-d_H-i-s') . '.csv';
+        $headers = [
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0",
+        ];
+
+        $handle = fopen('php://output', 'w');
+        fputcsv($handle, ['ID', 'Nom', 'Prénom', 'Email', 'Téléphone']);
+        
+        foreach ($tenants as $tenant) {
+            fputcsv($handle, [
+                $tenant->id,
+                $tenant->lastname,
+                $tenant->firstname,
+                $tenant->email,
+                $tenant->phone,
+            ]);
+        }
+
+        return response()->stream(
+        function () use ($handle) {
+            flush();
+            fclose($handle);
+        },
+        200,
+        $headers
+    );
+    }
 }
