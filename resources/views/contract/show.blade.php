@@ -40,13 +40,13 @@
                     <a href="{{ route('contract.edit', $contract->id) }}" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">
                         Modifier
                     </a>
-                    <a href="" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">
+                    <a href="" id="generateContract" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">
                         Générer le contrat
                     </a>
                 </div>
             </div>
 
-            <div class="bg-white shadow-lg rounded-lg p-6">
+            <div id="contractShow" class="bg-white shadow-lg rounded-lg p-6 mt-6 hidden">
                 <div id="editorjs"></div>
                 <button class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300" id="exportPdf">Exporter en PDF</button>
 
@@ -56,19 +56,29 @@
 
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
-                        const editor = new EditorJS({
-                            holder: 'editorjs',
-                            data: {!! json_encode($content, JSON_UNESCAPED_UNICODE) !!},
-                            readOnly: true,
-                            tools: {
-                                header: {
-                                    class: Header,
-                                    inlineToolbar: true
-                                },
-                                paragraph: {
-                                    class: Paragraph,
-                                    inlineToolbar: true
-                                }
+                        const generateBtn = document.getElementById('generateContract');
+                        const contractEditor = document.getElementById('contractShow');
+
+                        generateBtn.addEventListener('click', function(event) {
+                            event.preventDefault(); // Empêche le lien de recharger la page
+                            contractEditor.classList.toggle('hidden'); // Affiche/Cache la div
+                            
+                            if (!contractEditor.classList.contains('hidden')) {
+                                new EditorJS({
+                                    holder: 'editorjs',
+                                    data: {!! json_encode($content, JSON_UNESCAPED_UNICODE) !!},
+                                    readOnly: true,
+                                    tools: {
+                                        header: {
+                                            class: Header,
+                                            inlineToolbar: true
+                                        },
+                                        paragraph: {
+                                            class: Paragraph,
+                                            inlineToolbar: true
+                                        }
+                                    }
+                                });
                             }
                         });
                     });
